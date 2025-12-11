@@ -1,14 +1,21 @@
 import { connection } from "next/server";
 import { Suspense } from "react";
 
-const GetRandomValues = async () => {
-  await connection();
-
+const getValues = () => {
   const random = Math.random();
   const now = Date.now();
   const date = new Date();
   const uuid = crypto.randomUUID();
   const bytes = crypto.getRandomValues(new Uint8Array(16));
+
+  return { random, now, date, uuid, bytes };
+};
+
+const GetRandomValues = async () => {
+  await connection();
+
+  const { random, now, date, uuid, bytes } = getValues();
+
   return (
     <div>
       <h3 className="text-2xl">We are random</h3>
@@ -24,11 +31,8 @@ const GetRandomValues = async () => {
 const GetSameValues = async () => {
   "use cache";
 
-  const random = Math.random();
-  const now = Date.now();
-  const date = new Date();
-  const uuid = crypto.randomUUID();
-  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  const { random, now, date, uuid, bytes } = getValues();
+
   return (
     <div>
       <h3 className="text-2xl">We are all the same</h3>
