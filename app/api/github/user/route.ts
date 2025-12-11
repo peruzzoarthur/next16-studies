@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function GET(request: NextRequest) {
-  const username = 'peruzzoarthur'
+  const username = request.nextUrl.searchParams.get('username'); 
 
   if (!username) {
     return NextResponse.json({ error: 'Username is required' }, { status: 400 })

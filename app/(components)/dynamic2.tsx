@@ -1,5 +1,6 @@
+
 import { cacheLife, cacheTag } from "next/cache";
-import { RevalidateButton } from "./components/revalidate-button";
+import { UpdateTagButton } from "./components/update-tag-button";
 
 interface GitHubUser {
   login: string;
@@ -41,7 +42,7 @@ async function getGitHubUser(username: string): Promise<GitHubUser> {
   return response.json();
 }
 
-export async function DynamicContent() {
+export async function DynamicContent2() {
   const user = await getGitHubUser("peruzzoarthur");
 
   return (
@@ -61,7 +62,7 @@ export async function DynamicContent() {
         <span>{user.followers} followers</span>
         <span>{user.following} following</span>
       </div>
-      <RevalidateButton />
+      <UpdateTagButton />
     </div>
   );
 }

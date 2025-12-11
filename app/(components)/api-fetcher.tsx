@@ -1,24 +1,24 @@
 interface GitHubUser {
-  login: string
-  id: number
-  avatar_url: string
-  name: string | null
-  bio: string | null
-  public_repos: number
-  followers: number
-  following: number
+  login: string;
+  id: number;
+  avatar_url: string;
+  name: string | null;
+  bio: string | null;
+  public_repos: number;
+  followers: number;
+  following: number;
 }
 
 export async function ApiFetcher() {
-  const response = await fetch("http://localhost:3000/api/github/user", {
-    cache: "no-store", 
-  })
+  const response = await fetch("http://localhost:3000/api/github/user?username=peruzzoarthur", {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch user from API")
+    throw new Error("Failed to fetch user from API");
   }
 
-  const user: GitHubUser = await response.json()
+  const user: GitHubUser = await response.json();
 
   return (
     <div className="p-4 border border-gray-300 rounded-lg">
@@ -38,5 +38,5 @@ export async function ApiFetcher() {
         <span>{user.following} following</span>
       </div>
     </div>
-  )
+  );
 }

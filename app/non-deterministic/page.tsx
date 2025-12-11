@@ -29,6 +29,7 @@ const GetRandomValues = async () => {
 };
 
 const GetSameValues = async () => {
+  // same values are served to different users until revalidated
   "use cache";
 
   const { random, now, date, uuid, bytes } = getValues();

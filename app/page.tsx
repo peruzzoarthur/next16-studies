@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { DynamicContent } from "../(components)/dynamic";
 import { ApiFetcher } from "../(components)/api-fetcher";
-import { DynamicContent2 } from "../(components)/dynamic2";
 
 export default async function Page() {
   return (
@@ -10,19 +9,10 @@ export default async function Page() {
 
       <section>
         <h2 className="text-xl font-semibold mb-4">
-          1. Cached Function (use cache) with revalidate button
+          1. Cached Function (use cache)
         </h2>
         <Suspense fallback={<p className="text-gray-500">Loading cached user...</p>}>
           <DynamicContent />
-        </Suspense>
-      </section>
-
-      <section>
-        <h2 className="text-xl font-semibold mb-4">
-          1. Cached Function (use cache) with update button
-        </h2>
-        <Suspense fallback={<p className="text-gray-500">Loading cached user...</p>}>
-          <DynamicContent2 />
         </Suspense>
       </section>
 
